@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movement_speed = 5f;
+    public float movement_speed = 0.5f;
 
     public TouchActions touchActions;
 
