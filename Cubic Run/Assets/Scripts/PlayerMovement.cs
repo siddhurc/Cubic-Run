@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb != null)
         {
             // Freeze rotation along the X and Z axes
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
         else
         {
