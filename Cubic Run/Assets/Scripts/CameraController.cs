@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     public GameObject player;
     public Vector3 offsetPosition;
 
-    public float movementSmoothness = 0.12f;
+    public float movementSmoothness = 3f;
     private Transform playerTransform;
     // Start is called before the first frame update
     void Start()

@@ -273,8 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c0bff13a5a843079644e9c2f1e3ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 5
+  movement_speed: 0.25
   minimumSwipeMagnitude: 12
+  player: {fileID: 2146462306}
 --- !u!1 &1056231972
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2146462306}
   offsetPosition: {x: 4, y: 5, z: -10}
-  movementSmoothness: 0.12
+  movementSmoothness: 3
 --- !u!1 &1197899514
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +699,7 @@ GameObject:
   - component: {fileID: 2146462307}
   - component: {fileID: 2146462308}
   - component: {fileID: 2146462309}
+  - component: {fileID: 2146462310}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -770,6 +772,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2146462310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146462306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14a9158512ef4edc8603c781423e471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
