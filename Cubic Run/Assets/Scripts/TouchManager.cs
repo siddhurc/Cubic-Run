@@ -56,12 +56,12 @@ public class TouchManager : MonoBehaviour
                     // Horizontal swipe
                     if (swipeDirection.x < 0)
                     {
-                        Debug.Log("Right swipe detected");
+                        //Debug.Log("Right swipe detected");
                         RightMove(swipeDirection);
                     }
                     else
                     {
-                        Debug.Log("Left swipe detected");
+                        //Debug.Log("Left swipe detected");
                         LeftMove(swipeDirection);
                     }
                 }
@@ -70,12 +70,12 @@ public class TouchManager : MonoBehaviour
                     // Vertical swipe
                     if (swipeDirection.y < 0)
                     {
-                        Debug.Log("Upward swipe detected");
+                        //Debug.Log("Upward swipe detected");
                         ForwardMove(swipeDirection);
                     }
                     else
                     {
-                        Debug.Log("Downward swipe detected");
+                        //Debug.Log("Downward swipe detected");
                         BackwardMove(swipeDirection);
                     }
                 }
