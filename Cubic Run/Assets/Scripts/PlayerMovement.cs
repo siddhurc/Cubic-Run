@@ -11,8 +11,12 @@ public class PlayerMovement : MonoBehaviour
         // Check if the Rigidbody component exists
         if (rb != null)
         {
-            // Freeze rotation along the X and Z axes
+            // Freeze rotation along the X, Y and Z axes
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+            //Freeze the position of the player to Z position
+            rb.constraints |= RigidbodyConstraints.FreezePositionZ;
+
         }
         else
         {

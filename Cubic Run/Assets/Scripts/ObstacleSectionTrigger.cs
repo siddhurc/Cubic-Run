@@ -12,7 +12,7 @@ public class ObstacleSectionTrigger : MonoBehaviour
         if (other.CompareTag("Player")) // Check if the collider is the player
         {
             // Instantiate a new prefab obstacle 20 units ahead of the current trigger z position value. 
-            Instantiate(obstaclePrefab, new Vector3(0, 0, gameObject.transform.position.z+20f), Quaternion.identity);
+            Instantiate(obstaclePrefab, new Vector3(0, 0, gameObject.transform.position.z+220f), Quaternion.identity);
 
             //Disable the new obstacle spawn trigger game object since it spawns multiple obstacles while in contact with player.
             gameObject.SetActive(false);
