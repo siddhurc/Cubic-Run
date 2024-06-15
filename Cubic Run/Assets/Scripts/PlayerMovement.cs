@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject gameOverText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,4 +32,18 @@ public class PlayerMovement : MonoBehaviour
     {
         // You can add any update logic here if needed
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle")) // Check if the collider is the player
+        {
+            transform.position = new Vector3(0f, 2.39f, 0f);
+            Debug.Log("Player has touched the obstacle collider");
+
+
+            //Inform the GameManager about the game over state
+            GameManager.Instance.GameOver();
+        }
+    }
+
 }
