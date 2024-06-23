@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    //Removed below code lines since the GameManager doesnt need to singleton class
     // to define the singleton instance of the game manager
-    public static GameManager Instance { get; private set; }
+    //public static GameManager Instance { get; private set; }
 
     public GameObject gameOverText;
     public GameObject gamePausedText;
+    public TextMeshProUGUI scoreBoard;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        score = 0;
     }
 
     // Update is called once per frame
@@ -23,19 +27,20 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void Awake()
-    {
-        // Ensure that there's only one instance of GameManager
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep this GameManager between scene loads
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //Removed since the GameManager doesnt need to singleton class
+    //private void Awake()
+    //{
+    //    // Ensure that there's only one instance of GameManager
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject); // Keep this GameManager between scene loads
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     public void TogglePause()
     {
@@ -74,6 +79,19 @@ public class GameManager : MonoBehaviour
         // Resume time to avoid freezing the new scene loading
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void IncreaseScore(int value)
+    {
+        score += value;
+
+        //Updating the scoreboard to update the current score
+        UpdateScoreboard();
+    }
+
+    public void UpdateScoreboard()
+    {
+        scoreBoard.text = "Score : " + score.ToString();
     }
 }

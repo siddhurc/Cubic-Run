@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NewSectionTriggerTag
   - Obstacle
+  - Collectables_01
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject gameOverText;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogWarning("Rigidbody component not found on the GameObject.");
         }
+
+        gameManager = GameManager.FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -42,8 +45,20 @@ public class PlayerMovement : MonoBehaviour
 
 
             //Inform the GameManager about the game over state
-            GameManager.Instance.GameOver();
+            gameManager.GameOver();
+            
         }
+
+
+        //Collected gold bar with a value of 10
+        if (other.CompareTag("Collectables_01")) // Check if the collider is the player
+        {
+            gameManager.IncreaseScore(10);
+
+            //disble the goldbar since it is collected
+            other.gameObject.SetActive(false);
+        }
+
     }
 
 }
