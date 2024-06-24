@@ -181,12 +181,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9152752354043258435, guid: 177d9d0eb1a9f4d19bcb3990e54af6b5, type: 3}
       propertyPath: jump_speed
-      value: 1.7
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 9152752354043258435, guid: 177d9d0eb1a9f4d19bcb3990e54af6b5, type: 3}
       propertyPath: gameOverText
       value: 
       objectReference: {fileID: 160708351}
+    - target: {fileID: 9152752354043258435, guid: 177d9d0eb1a9f4d19bcb3990e54af6b5, type: 3}
+      propertyPath: movement_speed
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

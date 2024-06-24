@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnimator;
 
-    public float movement_speed = 0.20f;
+    public float movement_speed = 0.10f;
     public float jump_speed = 4.5f;
 
     public bool isActionInProgress = false;
