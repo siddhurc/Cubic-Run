@@ -5,21 +5,28 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject gameOverText;
     private GameManager gameManager;
+    private Rigidbody playerRb;
+    private Animator playerAnimator;
+
+    public float movement_speed = 0.20f;
+    public float jump_speed = 4.5f;
+
+    public bool isActionInProgress = false;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the Rigidbody component attached to the GameObject
-        Rigidbody rb = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody>();
 
         // Check if the Rigidbody component exists
-        if (rb != null)
+        if (playerRb != null)
         {
             // Freeze rotation along the X, Y and Z axes
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            playerRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
             //Freeze the position of the player to Z position
-            rb.constraints |= RigidbodyConstraints.FreezePositionZ;
+            //rb.constraints |= RigidbodyConstraints.FreezePositionZ;
 
         }
         else
@@ -28,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         gameManager = GameManager.FindObjectOfType<GameManager>();
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,6 +68,83 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
+    }
+
+    public void LeftMove(Vector2 swipeDirection)
+    {
+        // Ensure playerRb is not null and there's a Rigidbody component attached
+        if (playerRb != null)
+        {
+            // Calculate the force to apply for left movement
+            Vector3 force = -transform.right * movement_speed * swipeDirection.magnitude;
+
+            // Apply the force to the Rigidbody
+            playerRb.AddForce(force, ForceMode.Impulse);
+
+            Debug.Log("Player has made left move !!");
+        }
+    }
+
+    public void RightMove(Vector2 swipeDirection)
+    {
+        // Ensure playerRb is not null and there's a Rigidbody component attached
+        if (playerRb != null)
+        {
+            // Calculate the force to apply for right movement
+            Vector3 force = transform.right * movement_speed * swipeDirection.magnitude;
+
+            // Apply the force to the Rigidbody
+            playerRb.AddForce(force, ForceMode.Impulse);
+
+            Debug.Log("Player has made right move !!");
+        }
+    }
+
+    public void JumpMove(Vector2 swipeDirection)
+    {
+        // Ensure playerRb is not null and there's a Rigidbody component attached
+        if (playerRb != null && !isActionInProgress)
+        {
+            isActionInProgress = true;
+
+            // Calculate the force to apply for left movement
+            Vector3 force = transform.up * jump_speed;
+
+            // Apply the force to the Rigidbody
+            playerRb.AddForce(force, ForceMode.Impulse);
+            Debug.Log("Player has Jumped ..!!!");
+
+            // Activate the Jump mechanism
+            playerAnimator.SetTrigger("Jump");
+        }
+    }
+
+    public void CrouchMove(Vector2 swipeDirection)
+    {
+        // Ensure playerRb is not null and there's a Rigidbody component attached
+        if (playerRb != null && !isActionInProgress)
+        {
+
+            isActionInProgress = true;
+            // Calculate the force to apply for right movement
+            //Vector3 force = -transform.forward * movement_speed * swipeDirection.magnitude;
+
+            // Apply the force to the Rigidbody
+            //playerRb.AddForce(force, ForceMode.Impulse);
+            Debug.Log("Player has crouched ..!!!");
+
+            // Activate the crouch mechanism
+            playerAnimator.SetTrigger("Crouch");
+        }
+    }
+
+
+    //being called after the action event.
+    // It is being called at the end of animation event
+    public void resetActionInProgress(int temp)
+    {
+        isActionInProgress = false;
+        Debug.Log("Action has been reset.!!");
     }
 
 }

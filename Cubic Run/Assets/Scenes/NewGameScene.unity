@@ -180,6 +180,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9152752354043258435, guid: 177d9d0eb1a9f4d19bcb3990e54af6b5, type: 3}
+      propertyPath: jump_speed
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152752354043258435, guid: 177d9d0eb1a9f4d19bcb3990e54af6b5, type: 3}
       propertyPath: gameOverText
       value: 
       objectReference: {fileID: 160708351}
@@ -646,7 +650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c0bff13a5a843079644e9c2f1e3ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 0.08
   minimumSwipeMagnitude: 2
   player: {fileID: 33892650}
 --- !u!114 &1243811599

@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class TouchManager : MonoBehaviour
 {
-    public float movement_speed = 0.25f;
-
     // Touch controls
     private TouchInputActions touchInputActions;
     [SerializeField] private float minimumSwipeMagnitude = 2f;
@@ -13,7 +11,8 @@ public class TouchManager : MonoBehaviour
 
     public GameObject player;
     private Rigidbody playerRb;
-    private Animator playerAnimator;
+
+    private PlayerMovement playerMovement;
 
     private void Awake()
     {
@@ -39,7 +38,7 @@ public class TouchManager : MonoBehaviour
         //Getting rigid body from the player game object
         playerRb = player.GetComponent<Rigidbody>();
 
-        playerAnimator = player.GetComponent<Animator>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void ProcessSwipe(Vector2 swipeEndPosition)
@@ -60,12 +59,12 @@ public class TouchManager : MonoBehaviour
                     if (swipeDirection.x < 0)
                     {
                         //Debug.Log("Right swipe detected");
-                        RightMove(swipeDirection);
+                        playerMovement?.RightMove(swipeDirection);
                     }
                     else
                     {
                         //Debug.Log("Left swipe detected");
-                        LeftMove(swipeDirection);
+                        playerMovement?.LeftMove(swipeDirection);
                     }
                 }
                 else
@@ -74,12 +73,12 @@ public class TouchManager : MonoBehaviour
                     if (swipeDirection.y < 0)
                     {
                         //Debug.Log("Upward swipe detected");
-                        JumpMove(swipeDirection);
+                        playerMovement?.JumpMove(swipeDirection);
                     }
                     else
                     {
                         //Debug.Log("Downward swipe detected");
-                        CrouchMove(swipeDirection);
+                        playerMovement?.CrouchMove(swipeDirection);
                     }
                 }
             }
@@ -87,66 +86,6 @@ public class TouchManager : MonoBehaviour
         else
         {
             isSwipeInProgress = false;
-        }
-    }
-
-    private void LeftMove(Vector2 swipeDirection)
-    {
-        // Ensure playerRb is not null and there's a Rigidbody component attached
-        if (playerRb != null)
-        {
-            // Calculate the force to apply for left movement
-            Vector3 force = -transform.right * movement_speed * swipeDirection.magnitude;
-
-            // Apply the force to the Rigidbody
-            playerRb.AddForce(force, ForceMode.Impulse);
-        }
-    }
-
-    private void RightMove(Vector2 swipeDirection)
-    {
-        // Ensure playerRb is not null and there's a Rigidbody component attached
-        if (playerRb != null)
-        {
-            // Calculate the force to apply for right movement
-            Vector3 force = transform.right * movement_speed * swipeDirection.magnitude;
-
-            // Apply the force to the Rigidbody
-            playerRb.AddForce(force, ForceMode.Impulse);
-        }
-    }
-
-    private void JumpMove(Vector2 swipeDirection)
-    {
-        // Ensure playerRb is not null and there's a Rigidbody component attached
-        if (playerRb != null)
-        {
-            // Calculate the force to apply for left movement
-            //Vector3 force = transform.forward * movement_speed * swipeDirection.magnitude;
-
-            // Apply the force to the Rigidbody
-            //playerRb.AddForce(force, ForceMode.Impulse);
-            Debug.Log("Player has Jumped ..!!!");
-
-            // Activate the Jump mechanism
-            playerAnimator.SetTrigger("Jump");
-        }
-    }
-
-    private void CrouchMove(Vector2 swipeDirection)
-    {
-        // Ensure playerRb is not null and there's a Rigidbody component attached
-        if (playerRb != null)
-        {
-            // Calculate the force to apply for right movement
-            //Vector3 force = -transform.forward * movement_speed * swipeDirection.magnitude;
-
-            // Apply the force to the Rigidbody
-            //playerRb.AddForce(force, ForceMode.Impulse);
-            Debug.Log("Player has crouched ..!!!");
-
-            // Activate the crouch mechanism
-            playerAnimator.SetTrigger("Crouch");
         }
     }
 
