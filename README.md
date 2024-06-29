@@ -9,7 +9,9 @@ Application:
 - Designed animation to the player cubes when the palyer is in idle state to get the sense that the player is breathing. Shown below is the player controller state chart. The player has three states. Player_idle_animation_clip is played on loop, while the Player_jump_animation and Player_Crouch_animation are played when the player takes jump or crouch actions respectively. They are controlled by triggers(Crouch and Jump) as shown on left side of the screenshot. Once any these two animations are played, the player goes back to idle state.
 ![Player_animator_Controller](https://github.com/siddhurc/Cubic-Run/assets/32571617/1031f27e-8e11-4a79-8f6d-75bcdf7a4604)
 - Player Idle animation
+
 https://github.com/siddhurc/Cubic-Run/assets/32571617/aca14060-2ba6-43d8-82bc-98b2c5d7d875
+
 - Implemented animation event triggers as shown below to handle single player jump and crouch movements. The event resetActionInProgress() resets the flag of current animation in progress so that the player can make only a single jump or crouch move at a time. 
 ![Animation_event](https://github.com/siddhurc/Cubic-Run/assets/32571617/2449445a-43a6-4423-81db-8d29fdeb2077)
 - Added volumetric fog to add a bit of visual appealing to the game.
