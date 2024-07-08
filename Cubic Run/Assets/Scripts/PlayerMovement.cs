@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private GameManager gameManager;
     private Rigidbody playerRb;
     private Animator playerAnimator;
+    public ParticleSystem explosion;
 
     public float movement_speed = 0.10f;
     public float jump_speed = 4.5f;
@@ -57,7 +58,13 @@ public class PlayerMovement : MonoBehaviour
             gameManager.GameOver();
             
         }
+        else if(other.CompareTag("Obstacle_burst"))
+        {
+            other.gameObject.SetActive(false);
+            explosion.Play();
 
+            gameManager.GameOver();
+        }
 
         //Collected gold bar with a value of 10
         if (other.CompareTag("Collectables_01")) // Check if the collider is the player
