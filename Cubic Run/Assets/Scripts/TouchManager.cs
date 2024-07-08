@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Gyroscope = UnityEngine.Gyroscope;
 
 public class TouchManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class TouchManager : MonoBehaviour
     private Vector2 swipeStartPosition;
     private bool isSwipeInProgress = false;
 
-    public GameObject player;
-    private Rigidbody playerRb;
 
+    //accelerometer initialization
+    Accelerometer accelerometer;
+    [SerializeField] private float tiltSensitivity = 14f;
+
+    public GameObject player;
     private PlayerMovement playerMovement;
 
     private void Awake()
@@ -22,11 +26,17 @@ public class TouchManager : MonoBehaviour
     private void OnEnable()
     {
         touchInputActions.Enable();
+
+        //enable accelerometrer
+        InputSystem.EnableDevice(Accelerometer.current);
     }
 
     private void OnDisable()
     {
         touchInputActions.Disable();
+
+        //disable accelerometer
+        InputSystem.DisableDevice(Accelerometer.current);
     }
 
     private void Start()
@@ -36,9 +46,23 @@ public class TouchManager : MonoBehaviour
         touchInputActions.TouchInputMovement.Swipe.canceled += ctx => ProcessSwipe(ctx.ReadValue<Vector2>());
 
         //Getting rigid body from the player game object
-        playerRb = player.GetComponent<Rigidbody>();
-
         playerMovement = FindObjectOfType<PlayerMovement>();
+
+        //getting the current accelerometer
+        accelerometer = Accelerometer.current;
+    }
+
+    private void Update()
+    {
+        //Debug.Log("sid_accele_value " + accelerometer.acceleration.ReadValue().x);
+
+        float tilt_x = accelerometer.acceleration.ReadValue().x;
+
+        tilt_x = Mathf.Clamp(tilt_x, -1.0f, 1.0f);
+
+        Vector3 playerMovement = new Vector3(tilt_x * tiltSensitivity, 0, 0);
+
+        player.transform.Translate(playerMovement * Time.deltaTime);
     }
 
     private void ProcessSwipe(Vector2 swipeEndPosition)
