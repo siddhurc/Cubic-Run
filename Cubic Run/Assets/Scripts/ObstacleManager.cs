@@ -9,6 +9,9 @@ public class ObstacleManager : MonoBehaviour
     //creating a list to handle all obstacles dynamically
     private List<GameObject> obstacleList = new List<GameObject>();
 
+    //explosion prefab gameobject
+    public ParticleSystem explosionPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,8 +61,11 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    public void simulateExplosion(Vector3 explosionLocation)
+    public void simulateExplosion(Vector3 explosionPosition)
     {
-        Debug.Log("Emplosion simulated.. kaboom!!!");
+        ParticleSystem explosionGameObject = Instantiate(explosionPrefab, explosionPosition, Quaternion.identity);
+        explosionGameObject.Emit(50);
+        //destrying the game object after 1.9 seconds which is time to play the explosion
+        Destroy(explosionGameObject.gameObject, 1.9f);
     }
 }

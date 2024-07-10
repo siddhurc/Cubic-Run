@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSectionTrigger : MonoBehaviour
+public class SkySectionTrigger : MonoBehaviour
 {
-    private ObstacleManager obstacleManager;
-    private Transform spawnPoint;
-
-    private void Start()
+    private EnvironmentManager environmentManager;
+    // Start is called before the first frame update
+    void Start()
     {
-        obstacleManager = ObstacleManager.FindObjectOfType<ObstacleManager>();
+        environmentManager = EnvironmentManager.FindObjectOfType<EnvironmentManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,7 +16,7 @@ public class ObstacleSectionTrigger : MonoBehaviour
         if (other.CompareTag("Player")) // Check if the collider is the player
         {
             Vector3 spawnPoint = new Vector3(0, 0, gameObject.transform.position.z + 220f);
-            obstacleManager.spawnNewObstacle(spawnPoint); //inform obstacle manager to spawn new obstacle at the given spawn point
+            environmentManager.spawnNewSky(spawnPoint); //inform obstacle manager to spawn new obstacle at the given spawn point
 
             //Disable the new obstacle spawn trigger game object since it spawns multiple obstacles while in contact with player.
             gameObject.SetActive(false);

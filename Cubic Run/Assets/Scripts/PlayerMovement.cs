@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private GameManager gameManager;
     private Rigidbody playerRb;
     private Animator playerAnimator;
-    public ParticleSystem explosion;
+    private ObstacleManager obstacleManager;
 
     public float movement_speed = 0.10f;
     public float jump_speed = 4.5f;
@@ -36,8 +36,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         gameManager = GameManager.FindObjectOfType<GameManager>();
+        obstacleManager = ObstacleManager.FindObjectOfType<ObstacleManager>();
 
         playerAnimator = GetComponent<Animator>();
+
+
     }
 
     // Update is called once per frame
@@ -61,9 +64,12 @@ public class PlayerMovement : MonoBehaviour
         else if(other.CompareTag("Obstacle_burst"))
         {
             other.gameObject.SetActive(false);
-            explosion.Play();
 
-            gameManager.GameOver();
+            Debug.Log("Player has gone kaboom!!!");
+
+            obstacleManager.simulateExplosion(transform.position);
+
+            //gameManager.GameOver();
         }
 
         //Collected gold bar with a value of 10

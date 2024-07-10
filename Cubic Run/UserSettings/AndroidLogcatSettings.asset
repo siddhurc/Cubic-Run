@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "RZ8N30PPV7A",
         "name": "com.DefaultCompany.CubicRun",
-        "processId": 31306,
+        "processId": 31195,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -96,6 +96,24 @@
             "deviceId": "RZ8N30PPV7A",
             "name": "com.DefaultCompany.CubicRun",
             "processId": 31306,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.DefaultCompany.CubicRun",
+            "processId": 9618,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.DefaultCompany.CubicRun",
+            "processId": 14265,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.DefaultCompany.CubicRun",
+            "processId": 31195,
             "exited": false
         }
     ],

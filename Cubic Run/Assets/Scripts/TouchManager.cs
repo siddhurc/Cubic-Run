@@ -27,16 +27,20 @@ public class TouchManager : MonoBehaviour
     {
         touchInputActions.Enable();
 
+#if !UNITY_EDITOR
         //enable accelerometrer
         InputSystem.EnableDevice(Accelerometer.current);
+#endif
     }
 
     private void OnDisable()
     {
         touchInputActions.Disable();
 
+#if !UNITY_EDITOR
         //disable accelerometer
         InputSystem.DisableDevice(Accelerometer.current);
+#endif
     }
 
     private void Start()
@@ -56,6 +60,8 @@ public class TouchManager : MonoBehaviour
     {
         //Debug.Log("sid_accele_value " + accelerometer.acceleration.ReadValue().x);
 
+        //using preprocessor directives so that this code only runs in unity player i.e. android device
+#if !UNITY_EDITOR
         float tilt_x = accelerometer.acceleration.ReadValue().x;
 
         tilt_x = Mathf.Clamp(tilt_x, -1.0f, 1.0f);
@@ -63,6 +69,7 @@ public class TouchManager : MonoBehaviour
         Vector3 playerMovement = new Vector3(tilt_x * tiltSensitivity, 0, 0);
 
         player.transform.Translate(playerMovement * Time.deltaTime);
+#endif
     }
 
     private void ProcessSwipe(Vector2 swipeEndPosition)

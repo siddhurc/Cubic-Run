@@ -27,21 +27,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    //Removed since the GameManager doesnt need to singleton class
-    //private void Awake()
-    //{
-    //    // Ensure that there's only one instance of GameManager
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject); // Keep this GameManager between scene loads
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     public void TogglePause()
     {
         if (Time.timeScale == 1)
