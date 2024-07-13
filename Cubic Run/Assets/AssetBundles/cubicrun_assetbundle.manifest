@@ -1,0 +1,71 @@
+ManifestFileVersion: 0
+CRC: 3537257974
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1cee067be796fd45f43fdca45418cba4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f1dcdb289ee1e90d77b540e258162284
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 1cee067be796fd45f43fdca45418cba4
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3b4877232ea5044169b67f5af6ddcf59, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e153c451616324a25ba39b8477d1a07b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2e4d895ea5c1042f0a66f240bd3a71f6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cc916631c2ac7463482fdb17a48f81c9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 19998a9bb6ce941e9bd465f5767e3b40, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fb3a39bf1d191435d9920b481d1ba18c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Crate_question.prefab
+- Assets/Prefabs/Crate_exclamation.prefab
+- Assets/Prefabs/Obstacle_01.prefab
+- Assets/Prefabs/SideWalkPoles.prefab
+- Assets/Prefabs/Crate_gold.prefab
+- Assets/Prefabs/Gold_coin.prefab
+- Assets/Prefabs/Barrier.prefab
+- Assets/Prefabs/Crate_brown_open.prefab
+- Assets/Prefabs/Crate_brown.prefab
+- Assets/Prefabs/SmallExplosion.prefab
+- Assets/Prefabs/Environment_01.prefab
+- Assets/Prefabs/PlainObstacle.prefab
+- Assets/Prefabs/Crate_blue.prefab
+- Assets/Prefabs/Sky.prefab
+Dependencies: []

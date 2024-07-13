@@ -2,118 +2,46 @@
     "m_SelectedDeviceId": "RZ8N30PPV7A",
     "m_SelectedProcess": {
         "deviceId": "RZ8N30PPV7A",
-        "name": "com.DefaultCompany.CubicRun",
-        "processId": 31195,
+        "name": "com.SIDRA.CubicRun",
+        "processId": 6466,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownProcessesForSerialization": [
         {
             "deviceId": "RZ8N30PPV7A",
-            "name": "android.process.media",
-            "processId": 5904,
+            "name": "com.SIDRA.CubicRun",
+            "processId": 23579,
             "exited": true
         },
         {
             "deviceId": "RZ8N30PPV7A",
-            "name": "com.sec.android.app.launcher",
-            "processId": 29764,
+            "name": "com.SIDRA.CubicRun",
+            "processId": 31076,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 32359,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 4693,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 5843,
             "exited": false
         },
         {
             "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 13442,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 14555,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 25344,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 26005,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 26471,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 26937,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 27535,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 27998,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 28402,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 28922,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 30251,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 30877,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 31306,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 9618,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 14265,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.DefaultCompany.CubicRun",
-            "processId": 31195,
+            "name": "com.SIDRA.CubicRun",
+            "processId": 6466,
             "exited": false
         }
     ],
