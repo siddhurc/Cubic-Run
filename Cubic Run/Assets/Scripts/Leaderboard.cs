@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    public GameObject cellEntryPrefab;
+    public GameObject tableCell_Prefab;
     public Transform leaderboardTable;
     // Start is called before the first frame update
     void Start()
@@ -28,17 +28,11 @@ public class Leaderboard : MonoBehaviour
 
         foreach(LeaderboardScore score in leaderboardScores)
         {
-            GameObject entry = Instantiate(cellEntryPrefab, leaderboardTable);
-            TextMeshProUGUI text = entry.GetComponent<TextMeshProUGUI>();
-            text.text = score.rank.ToString();
-
-            GameObject entry_2 = Instantiate(cellEntryPrefab, leaderboardTable);
-            TextMeshProUGUI text_2 = entry_2.GetComponent<TextMeshProUGUI>();
-            text_2.text = score.playerName;
-
-            GameObject entry_3 = Instantiate(cellEntryPrefab, leaderboardTable);
-            TextMeshProUGUI text_3 = entry_3.GetComponent<TextMeshProUGUI>();
-            text_3.text = score.score.ToString();
+            GameObject entry = Instantiate(tableCell_Prefab, leaderboardTable);
+            TextMeshProUGUI[] list_of_components = entry.GetComponentsInChildren<TextMeshProUGUI>();
+            list_of_components[0].text = (score.rank + 1).ToString(); //adding 1 to rank since rank starts from 0
+            list_of_components[1].text = score.playerName.ToString();
+            list_of_components[2].text = score.score.ToString();
         }
     }
 }

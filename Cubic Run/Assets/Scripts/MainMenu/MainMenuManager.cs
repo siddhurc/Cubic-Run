@@ -19,7 +19,6 @@ public class MainMenuManager : MonoBehaviour
 
     public Slider loadingSlider;
 
-
     public void StartNewGame()
     {
         mainMenu.SetActive(false);
@@ -102,6 +101,9 @@ public class MainMenuManager : MonoBehaviour
 
         // Cleanup
         assetBundle = null;
+
+        //destroy the mainmenumanager game object
+        Destroy(gameObject);
     }
 
     void OnDestroy()

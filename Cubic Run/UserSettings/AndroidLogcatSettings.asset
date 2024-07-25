@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RZ8N30PPV7A",
     "m_SelectedProcess": {
-        "deviceId": "RZ8N30PPV7A",
-        "name": "com.SIDRA.CubicRun",
-        "processId": 15662,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,61 +11,37 @@
         {
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
-            "processId": 32359,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.SIDRA.CubicRun",
-            "processId": 4693,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.SIDRA.CubicRun",
-            "processId": 5843,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.SIDRA.CubicRun",
-            "processId": 6466,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.sec.android.app.launcher",
-            "processId": 10032,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.SIDRA.CubicRun",
-            "processId": 6992,
-            "exited": false
-        },
-        {
-            "deviceId": "RZ8N30PPV7A",
-            "name": "com.SIDRA.CubicRun",
             "processId": 8884,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
             "processId": 11112,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
             "processId": 11900,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
             "processId": 15662,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.sec.android.app.launcher",
+            "processId": 1941,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 23246,
             "exited": false
         },
         {

@@ -78,12 +78,11 @@ public class CloudManager : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
-    public async void GetTopFiveScores()
+    public async void GetTopScores()
     {
         popup_gameobject.SetActive(true);
-        Limit = 5;
         var scoresResponse =
-            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId, new GetScoresOptions {Limit = Limit });
+            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
         string jsonResponse = JsonConvert.SerializeObject(scoresResponse);
 
         LeaderboardResponse response = JsonConvert.DeserializeObject<LeaderboardResponse>(jsonResponse);
