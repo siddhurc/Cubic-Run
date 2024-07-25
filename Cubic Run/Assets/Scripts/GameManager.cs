@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
 
     //UNITY CLOUD GAMING SERVICES
-    Leaderboards leaderboards;
+    CloudManager cloudManager;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         //Vector3 player_spawnPoint = new Vector3(0.01f, 0.54f, 27.05f);
         //player = Instantiate(playerPrefab, player_spawnPoint, Quaternion.identity);
 
-        leaderboards = Leaderboards.FindObjectOfType<Leaderboards>();
+        cloudManager = CloudManager.Instance;
     }
 
     // Update is called once per frame
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             gameOverText.SetActive(true);
         }
 
-        leaderboards.AddScore(score);
+        cloudManager.AddScore(score);
 
         StartCoroutine(LoadMainScene(4f));
 

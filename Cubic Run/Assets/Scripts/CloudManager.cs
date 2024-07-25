@@ -6,10 +6,15 @@ using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 
-public class Leaderboards : MonoBehaviour
+public class CloudManager : MonoBehaviour
 {
+    public static CloudManager Instance { get; private set; }
+    public GameObject popup_gameobject;
+
     // Create a leaderboard with this ID in the Unity Cloud Dashboard
     const string LeaderboardId = "CubicRun_Leaderboard";
+    Leaderboard leaderboard;
+    PopupActions popup;
 
     string VersionId { get; set; }
     int Offset { get; set; }
@@ -17,10 +22,31 @@ public class Leaderboards : MonoBehaviour
     int RangeLimit { get; set; }
     List<string> FriendIds { get; set; }
 
-    async void Awake()
+    private async void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persist the CloudManager across scenes
+            await InitializeCloudServices();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        
+    }
+
+    public async void Start()
+    {
+        leaderboard = Leaderboard.FindObjectOfType<Leaderboard>();
+        popup = PopupActions.FindObjectOfType<PopupActions>();
+    }
+
+    private async Task InitializeCloudServices()
     {
         await UnityServices.InitializeAsync();
-
         await SignInAnonymously();
     }
 
@@ -52,15 +78,24 @@ public class Leaderboards : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
-    public async void GetPaginatedScores()
+    public async void GetTopFiveScores()
     {
-        Offset = 10;
-        Limit = 10;
+        popup_gameobject.SetActive(true);
+        Limit = 5;
         var scoresResponse =
-            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId, new GetScoresOptions { Offset = Offset, Limit = Limit });
-        Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId, new GetScoresOptions {Limit = Limit });
+        string jsonResponse = JsonConvert.SerializeObject(scoresResponse);
+
+        LeaderboardResponse response = JsonConvert.DeserializeObject<LeaderboardResponse>(jsonResponse);
+
+        if(response != null)
+        {
+            
+            leaderboard.populateTable(response.results);
+        }
     }
 
+    
     public async void GetPlayerScore()
     {
         var scoreResponse =
@@ -68,10 +103,22 @@ public class Leaderboards : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
-    public async void GetVersionScores()
-    {
-        var versionScoresResponse =
-            await LeaderboardsService.Instance.GetVersionScoresAsync(LeaderboardId, VersionId);
-        Debug.Log(JsonConvert.SerializeObject(versionScoresResponse));
-    }
+}
+
+[System.Serializable]
+public class LeaderboardResponse
+{
+    public int limit;
+    public int offset;
+    public int total;
+    public List<LeaderboardScore> results;
+}
+
+[System.Serializable]
+public class LeaderboardScore
+{
+    public string playerId;
+    public string playerName;
+    public int rank;
+    public float score;
 }

@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject loadingScreen;
     public GameObject mainMenu;
-    public string assetBundleName = "cubicrun_assetbundle";
+    public string assetBundleName = "cubicrun_assetbundle_45";
     public string newGameSceneName = "NewGameScene";
     public TMP_Text loadingText;
     public TMP_Text debugLog;

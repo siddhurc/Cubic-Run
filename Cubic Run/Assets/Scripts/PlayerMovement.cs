@@ -39,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         obstacleManager = ObstacleManager.FindObjectOfType<ObstacleManager>();
 
         playerAnimator = GetComponent<Animator>();
-
-
     }
 
     // Update is called once per frame
@@ -80,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
             //disble the goldbar since it is collected
             other.gameObject.SetActive(false);
         }
-
     }
 
     public void LeftMove(Vector2 swipeDirection)
@@ -94,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             // Apply the force to the Rigidbody
             playerRb.AddForce(force, ForceMode.Impulse);
 
-            Debug.Log("Player has made left move !!");
+            //Debug.Log("Player has made left move !!");
         }
     }
 
@@ -109,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             // Apply the force to the Rigidbody
             playerRb.AddForce(force, ForceMode.Impulse);
 
-            Debug.Log("Player has made right move !!");
+            //Debug.Log("Player has made right move !!");
         }
     }
 
@@ -125,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply the force to the Rigidbody
             playerRb.AddForce(force, ForceMode.Impulse);
-            Debug.Log("Player has Jumped ..!!!");
+            //Debug.Log("Player has Jumped ..!!!");
 
             // Activate the Jump mechanism
             playerAnimator.SetTrigger("Jump");
@@ -144,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply the force to the Rigidbody
             //playerRb.AddForce(force, ForceMode.Impulse);
-            Debug.Log("Player has crouched ..!!!");
+            //Debug.Log("Player has crouched ..!!!");
 
             // Activate the crouch mechanism
             playerAnimator.SetTrigger("Crouch");
@@ -157,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
     public void resetActionInProgress(int temp)
     {
         isActionInProgress = false;
-        Debug.Log("Action has been reset.!!");
+        //Debug.Log("Action has been reset.!!");
     }
 
 }
