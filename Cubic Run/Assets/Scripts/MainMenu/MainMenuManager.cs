@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
     public string newGameSceneName = "NewGameScene";
     public TMP_Text loadingText;
     public TMP_Text debugLog;
+    public CutSceneManager cutsceneManager; // Ensure this reference is set in the Unity editor
 
     private AssetBundle assetBundle;
 
@@ -22,23 +21,24 @@ public class MainMenuManager : MonoBehaviour
     public void StartNewGame()
     {
         mainMenu.SetActive(false);
-        loadingScreen.SetActive(true);
-        StartCoroutine(LoadAssetBundleAndScene());
+        StartCoroutine(LoadAssetBundleAndSceneAdditively());
+        //loadingScreen.SetActive(true);
+        cutsceneManager.PlayCutscene();
     }
 
     public void LoadGame()
     {
-
+        // Your load game logic here
     }
 
     public void Options()
     {
-
+        // Your options logic here
     }
 
     public void About()
     {
-
+        // Your about logic here
     }
 
     public void ExitGame()
@@ -47,16 +47,16 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator LoadAssetBundleAndScene()
+    public IEnumerator LoadAssetBundleAndSceneAdditively()
     {
         string assetBundlePath = System.IO.Path.Combine(Application.streamingAssetsPath, assetBundleName);
 
-        if (assetBundlePath == null)
+        if (string.IsNullOrEmpty(assetBundlePath))
         {
             debugLog.text = "empty asset bundle path..";
             Debug.LogError("empty asset bundle path..");
+            yield break;
         }
-            
 
         AssetBundleCreateRequest bundleCreateRequest = AssetBundle.LoadFromFileAsync(assetBundlePath);
 
@@ -64,13 +64,13 @@ public class MainMenuManager : MonoBehaviour
         {
             debugLog.text = "error in creating bundle request..";
             Debug.LogError("error in creating bundle request..");
+            yield break;
         }
-            
 
         while (!bundleCreateRequest.isDone)
         {
             float progressValue = Mathf.Clamp01(bundleCreateRequest.progress / 0.9f);
-            loadingText.text = "Loading Asset Bundle ... "+ Mathf.Round(progressValue * 100f) + "%";
+            loadingText.text = "Loading Asset Bundle ... " + Mathf.Round(progressValue * 100f) + "%";
             loadingSlider.value = progressValue;
             yield return null;
         }
@@ -81,12 +81,10 @@ public class MainMenuManager : MonoBehaviour
         {
             debugLog.text = "asset bundle not loaded properly..";
             Debug.LogError("asset bundle not loaded properly..");
+            yield break;
         }
-           
 
-        //string scenePathInAssetBundle = assetBundle.GetAllScenePaths().FirstOrDefault(s => s.Contains(newGameSceneName));
-
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(newGameSceneName);
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(newGameSceneName, LoadSceneMode.Additive);
 
         while (!loadOperation.isDone)
         {
@@ -96,14 +94,36 @@ public class MainMenuManager : MonoBehaviour
             yield return null;
         }
 
-        // Unload asset bundle
+        // Optionally unload the asset bundle if no longer needed
         assetBundle.Unload(false);
 
         // Cleanup
         assetBundle = null;
 
-        //destroy the mainmenumanager game object
+        // Activate the new scene's camera and deactivate the main menu camera
+        ActivateNewSceneCamera();
+
+        // Destroy the MainMenuManager game object
         Destroy(gameObject);
+    }
+
+    public void ActivateNewSceneCamera()
+    {
+        Camera[] cameras = Camera.allCameras;
+        foreach (var cam in cameras)
+        {
+            if (cam.gameObject.scene.name == newGameSceneName)
+            {
+                cam.gameObject.SetActive(true);
+            }
+            else
+            {
+                cam.gameObject.SetActive(false);
+            }
+        }
+
+        PlayerMovement playerMovement = PlayerMovement.FindObjectOfType<PlayerMovement>();
+        playerMovement.reload_references_after_scene_transition();
     }
 
     void OnDestroy()
@@ -113,5 +133,4 @@ public class MainMenuManager : MonoBehaviour
             assetBundle.Unload(true); // Unload the asset bundle when no longer needed
         }
     }
-
 }

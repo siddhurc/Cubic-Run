@@ -12,8 +12,8 @@ public class TouchManager : MonoBehaviour
 
 
     //accelerometer initialization
-    Accelerometer accelerometer;
-    [SerializeField] private float tiltSensitivity = 14f;
+    //Accelerometer accelerometer;
+    //[SerializeField] private float tiltSensitivity = 14f;
 
     public GameObject player;
     private PlayerMovement playerMovement;
@@ -27,20 +27,20 @@ public class TouchManager : MonoBehaviour
     {
         touchInputActions.Enable();
 
-#if !UNITY_EDITOR
-        //enable accelerometrer
-        InputSystem.EnableDevice(Accelerometer.current);
-#endif
+//#if !UNITY_EDITOR
+//        //enable accelerometrer
+//        InputSystem.EnableDevice(Accelerometer.current);
+//#endif
     }
 
     private void OnDisable()
     {
         touchInputActions.Disable();
 
-#if !UNITY_EDITOR
-        //disable accelerometer
-        InputSystem.DisableDevice(Accelerometer.current);
-#endif
+//#if !UNITY_EDITOR
+//        //disable accelerometer
+//        InputSystem.DisableDevice(Accelerometer.current);
+//#endif
     }
 
     private void Start()
@@ -53,7 +53,10 @@ public class TouchManager : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
 
         //getting the current accelerometer
-        accelerometer = Accelerometer.current;
+        //accelerometer = Accelerometer.current;
+
+        //player = GameObject.FindWithTag("Player").transform.Find("body")?.gameObject;
+        
     }
 
     private void Update()
@@ -61,15 +64,17 @@ public class TouchManager : MonoBehaviour
         //Debug.Log("sid_accele_value " + accelerometer.acceleration.ReadValue().x);
 
         //using preprocessor directives so that this code only runs in unity player i.e. android device
-#if !UNITY_EDITOR
-        float tilt_x = accelerometer.acceleration.ReadValue().x;
+//#if !UNITY_EDITOR
+//        float tilt_x = accelerometer.acceleration.ReadValue().x;
 
-        tilt_x = Mathf.Clamp(tilt_x, -1.0f, 1.0f);
+//        tilt_x = Mathf.Clamp(tilt_x, -1.0f, 1.0f);
 
-        Vector3 playerMovement = new Vector3(tilt_x * tiltSensitivity, 0, 0);
+//        Vector3 playerMovement = new Vector3(tilt_x * tiltSensitivity, 0, 0);
 
-        player.transform.Translate(playerMovement * Time.deltaTime);
-#endif
+//        Debug.Log($"Accelerometer Data: {tilt_x}");
+
+//        player.transform.Translate(playerMovement * Time.deltaTime);
+//#endif
     }
 
     private void ProcessSwipe(Vector2 swipeEndPosition)

@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject gameOverText;
     private GameManager gameManager;
     private Rigidbody playerRb;
     private Animator playerAnimator;
@@ -39,6 +38,13 @@ public class PlayerMovement : MonoBehaviour
         obstacleManager = ObstacleManager.FindObjectOfType<ObstacleManager>();
 
         playerAnimator = GetComponent<Animator>();
+    }
+
+    public void reload_references_after_scene_transition()
+    {
+        Debug.Log("reloaded references after scene transition");
+        gameManager = GameManager.FindObjectOfType<GameManager>();
+        obstacleManager = ObstacleManager.FindObjectOfType<ObstacleManager>();
     }
 
     // Update is called once per frame

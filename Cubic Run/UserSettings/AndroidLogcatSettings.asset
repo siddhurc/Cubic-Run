@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RZ8N30PPV7A",
     "m_SelectedProcess": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "RZ8N30PPV7A",
+        "name": "com.SIDRA.CubicRun",
+        "processId": 28947,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,72 @@
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
             "processId": 23246,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 11307,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 9937,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 11452,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 14016,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 19615,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 20620,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 22701,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 23430,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 24327,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 28130,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 28947,
             "exited": false
         },
         {
