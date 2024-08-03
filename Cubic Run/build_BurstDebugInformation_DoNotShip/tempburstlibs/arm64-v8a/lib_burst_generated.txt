@@ -28,6 +28,9 @@ Library: /Users/siddhurc/Library/Application Support/Unity/Unity_projects/Cubic 
 --assembly-defines=Unity.InputSystem.ForUI;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
+--assembly-defines=Unity.ProBuilder;
+--assembly-defines=Unity.ProBuilder.KdTree;
+--assembly-defines=Unity.ProBuilder.Poly2Tri;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.Services.Authentication;
 --assembly-defines=Unity.Services.Authentication.PlayerAccounts;

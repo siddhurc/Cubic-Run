@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab; // Reference to the obstacle prefab to spawn
+    //public GameObject obstaclePrefab; // Reference to the obstacle prefab to spawn
+    public GameObject[] listOfObstaclePrefabs;
 
     //creating a list to handle all obstacles dynamically
     private List<GameObject> obstacleList = new List<GameObject>();
@@ -26,9 +27,10 @@ public class ObstacleManager : MonoBehaviour
 
     public void spawnNewObstacle(Vector3 spawnPoint)
     {
-        // Instantiate a new prefab obstacle 20 units ahead of the current trigger z position value. 
-        GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoint, Quaternion.identity);
-        addObstacleToList(newObstacle);
+        // Instantiate a new prefab obstacle 20 units ahead of the current trigger z position value.
+        GameObject newObstaclePrefab = getRandomObstaclePrefab();
+        GameObject newObstacleGO = Instantiate(newObstaclePrefab, spawnPoint, Quaternion.identity);
+        addObstacleToList(newObstacleGO);
         removeOldestObstacle();
     }
 
@@ -67,5 +69,14 @@ public class ObstacleManager : MonoBehaviour
         explosionGameObject.Emit(50);
         //destrying the game object after 1.9 seconds which is time to play the explosion
         Destroy(explosionGameObject.gameObject, 1.9f);
+    }
+
+    public GameObject getRandomObstaclePrefab()
+    {
+        int obstacleCount = listOfObstaclePrefabs.Length;
+        int randomIndex = Random.Range(0, obstacleCount);
+
+        Debug.Log(randomIndex);
+        return listOfObstaclePrefabs[randomIndex];
     }
 }

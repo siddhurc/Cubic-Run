@@ -22,13 +22,7 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         StartCoroutine(LoadAssetBundleAndSceneAdditively());
-        //loadingScreen.SetActive(true);
         cutsceneManager.PlayCutscene();
-    }
-
-    public void LoadGame()
-    {
-        // Your load game logic here
     }
 
     public void Options()
@@ -121,9 +115,6 @@ public class MainMenuManager : MonoBehaviour
                 cam.gameObject.SetActive(false);
             }
         }
-
-        PlayerMovement playerMovement = PlayerMovement.FindObjectOfType<PlayerMovement>();
-        playerMovement.reload_references_after_scene_transition();
     }
 
     void OnDestroy()

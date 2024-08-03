@@ -16,7 +16,7 @@ public class ObstacleSectionTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Check if the collider is the player
         {
-            Vector3 spawnPoint = new Vector3(0, 0, gameObject.transform.position.z + 220f);
+            Vector3 spawnPoint = new Vector3(0, 0, gameObject.transform.position.z + 240f);
             obstacleManager.spawnNewObstacle(spawnPoint); //inform obstacle manager to spawn new obstacle at the given spawn point
 
             //Disable the new obstacle spawn trigger game object since it spawns multiple obstacles while in contact with player.

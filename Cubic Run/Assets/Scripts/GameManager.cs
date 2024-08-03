@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,14 +11,20 @@ public class GameManager : MonoBehaviour
     // to define the singleton instance of the game manager
     //public static GameManager Instance { get; private set; }
 
-    public GameObject gameOverText;
-    public GameObject gamePausedText;
     public TextMeshProUGUI scoreBoard;
     public int score;
     public GameObject pauseButton;
-    public GameObject playButton;
     public GameObject playerPrefab;
     private GameObject player;
+    public GameObject pauseMenuPopup;
+    public GameObject gameOverPopup;
+    public TextMeshProUGUI scoreBoard_PausePopupMenu;
+    public TextMeshProUGUI scoreBoard_GameoverPopupMenu;
+    public GameObject currentPlayerHighScore_UI;
+    private int currentPlayerHighScore = 0;
+
+    public Slider health_slider;
+    private int playerHealth = 100;
 
     //UNITY CLOUD GAMING SERVICES
     CloudManager cloudManager;
@@ -26,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         score = 0;
+        playerHealth = 100;
 
         //work on future builds since loading player from script disables player movement
         //Vector3 player_spawnPoint = new Vector3(0.01f, 0.54f, 27.05f);
@@ -37,39 +45,47 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        updateHealthUI();
     }
 
-    public void TogglePause()
+    public void PauseButtonOnClick()
     {
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0; // Pause the game
-            togglePlayPause();
+            scoreBoard_PausePopupMenu.text = "SCORE : "+score;
+            pauseMenuPopup.SetActive(true);
         }
         else
         {
             Time.timeScale = 1; // Resume the game
-            togglePlayPause();
+            pauseMenuPopup.SetActive(false);
         }
     }
 
-    public void GameOver()
+    public async void GameOver()
     {
         // Pause the gameplay since the player is hit by obstacle
         Time.timeScale = 0f;
 
+        cloudManager.AddScore(score);
+        scoreBoard_GameoverPopupMenu.text = "SCORE : " + score;
 
-        //If the player is hit by a obstacle then the game is over 
-        if (gameOverText != null)
+        currentPlayerHighScore = await cloudManager.GetPlayerScore();
+        if(currentPlayerHighScore == 0)
         {
-            gameOverText.SetActive(true);
+            currentPlayerHighScore = score;
         }
 
-        cloudManager.AddScore(score);
+        currentPlayerHighScore_UI.GetComponent<TextMeshProUGUI>().text = currentPlayerHighScore.ToString();
 
-        StartCoroutine(LoadMainScene(4f));
+        //display game over popup
+        gameOverPopup.SetActive(true);
+    }
 
+    public void GoToMainMenu()
+    {
+        StartCoroutine(LoadMainScene(1f));
     }
 
     private IEnumerator LoadMainScene(float delay)
@@ -95,19 +111,33 @@ public class GameManager : MonoBehaviour
         scoreBoard.text = "Score : " + score.ToString();
     }
 
-    public void togglePlayPause()
+    public void PlayerTakeDamage(int damage)
     {
-        if(playButton.activeInHierarchy == true)
+        playerHealth -= damage;
+        if (playerHealth <= 0)
         {
-            playButton.SetActive(false);
-            pauseButton.SetActive(true);
-            gamePausedText.SetActive(false);
+            Debug.Log("Game over as plaer health reached below zero");
+            GameOver();
         }
         else
         {
-            playButton.SetActive(true);
-            pauseButton.SetActive(false);
-            gamePausedText.SetActive(true);
+            updateHealthUI();
         }
     }
+
+    public void PlayerHeal(int heal_value)
+    {
+        playerHealth += heal_value;
+        if (playerHealth > 100)
+        {
+            playerHealth = 100;
+        }
+        updateHealthUI();
+    }
+
+    void updateHealthUI()
+    {
+        health_slider.value = playerHealth;
+    }
+
 }

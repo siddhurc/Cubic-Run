@@ -8,6 +8,11 @@ TagManager:
   - Obstacle
   - Collectables_01
   - Obstacle_burst
+  - Enemy
+  - Bullet
+  - Shootable_normal
+  - Shootable_burst
+  - Shootable_nokill
   layers:
   - Default
   - TransparentFX
@@ -15,9 +20,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Bullet
+  - Shootables
   - 
   - 
   - 

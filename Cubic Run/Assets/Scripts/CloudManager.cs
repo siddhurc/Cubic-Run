@@ -95,11 +95,12 @@ public class CloudManager : MonoBehaviour
     }
 
     
-    public async void GetPlayerScore()
+    public async Task<int> GetPlayerScore()
     {
         var scoreResponse =
             await LeaderboardsService.Instance.GetPlayerScoreAsync(LeaderboardId);
-        Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+        //Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+        return ((int)scoreResponse.Score);
     }
 
 }
