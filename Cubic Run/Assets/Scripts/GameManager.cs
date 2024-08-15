@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         playerHealth -= damage;
         if (playerHealth <= 0)
         {
-            Debug.Log("Game over as plaer health reached below zero");
+            Debug.Log("Game over as player health reached below zero");
             GameOver();
         }
         else
@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHeal(int heal_value)
     {
+        if(playerHealth >= 100)
+        {
+            return;
+        }
+
         playerHealth += heal_value;
         if (playerHealth > 100)
         {

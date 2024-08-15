@@ -13,6 +13,7 @@ TagManager:
   - Shootable_normal
   - Shootable_burst
   - Shootable_nokill
+  - Collectables_health
   layers:
   - Default
   - TransparentFX

@@ -81,6 +81,15 @@ public class PlayerMovement : MonoBehaviour
             //disble the goldbar since it is collected
             other.gameObject.SetActive(false);
         }
+
+        //Collected gold bar with a value of 10
+        if (other.CompareTag("Collectables_health")) // Check if the collider is the player
+        {
+            gameManager.PlayerHeal(50);
+
+            //disble the goldbar since it is collected
+            other.gameObject.SetActive(false);
+        }
     }
 
     public void LeftMove(Vector2 swipeDirection)

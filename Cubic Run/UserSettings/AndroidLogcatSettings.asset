@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "R3CX107VA3T",
+    "m_SelectedDeviceId": "RZ8N30PPV7A",
     "m_SelectedProcess": {
-        "deviceId": "R3CX107VA3T",
+        "deviceId": "RZ8N30PPV7A",
         "name": "com.SIDRA.CubicRun",
-        "processId": 19904,
+        "processId": 13587,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -90,6 +90,12 @@
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
             "processId": 9771,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 13587,
             "exited": false
         },
         {
