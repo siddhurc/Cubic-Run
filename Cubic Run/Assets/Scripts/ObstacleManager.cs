@@ -75,8 +75,6 @@ public class ObstacleManager : MonoBehaviour
     {
         int obstacleCount = listOfObstaclePrefabs.Length;
         int randomIndex = Random.Range(0, obstacleCount);
-
-        Debug.Log(randomIndex);
         return listOfObstaclePrefabs[randomIndex];
     }
 }

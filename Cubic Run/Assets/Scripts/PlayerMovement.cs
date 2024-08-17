@@ -73,6 +73,19 @@ public class PlayerMovement : MonoBehaviour
             gameManager.PlayerTakeDamage(25);
         }
 
+        //player take damage when spikes fall on the player.
+        if(other.CompareTag("Obstacle_spikes"))
+        {
+            gameManager.PlayerTakeDamage(5);
+            other.gameObject.SetActive(false);
+        }
+
+        ////player take damage when player touches the jumping black bomb
+        //if (other.CompareTag("Obstacle_BlackBomb"))
+        //{
+        //    gameManager.PlayerTakeDamage(7);
+        //}
+
         //Collected gold bar with a value of 10
         if (other.CompareTag("Collectables_01")) // Check if the collider is the player
         {

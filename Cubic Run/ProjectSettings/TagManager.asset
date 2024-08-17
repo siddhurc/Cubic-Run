@@ -14,6 +14,10 @@ TagManager:
   - Shootable_burst
   - Shootable_nokill
   - Collectables_health
+  - Projectile
+  - Floor
+  - Obstacle_spikes
+  - Obstacle_BlackBomb
   layers:
   - Default
   - TransparentFX
@@ -24,9 +28,9 @@ TagManager:
   - Player
   - Bullet
   - Shootables
-  - 
-  - 
-  - 
+  - Floor
+  - Pre fractured
+  - Post fractured
   - 
   - 
   - 

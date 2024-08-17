@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.dgreenheck.openfracture": "https://github.com/dgreenheck/OpenFracture.git",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.feature.development": "1.0.1",
@@ -8,6 +9,7 @@
     "com.unity.mobile.android-logcat": "1.4.2",
     "com.unity.postprocessing": "3.2.2",
     "com.unity.probuilder": "5.2.2",
+    "com.unity.render-pipelines.universal": "14.0.9",
     "com.unity.services.leaderboards": "2.1.0",
     "com.unity.shadergraph": "14.0.9",
     "com.unity.textmeshpro": "3.0.6",

@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "RZ8N30PPV7A",
         "name": "com.SIDRA.CubicRun",
-        "processId": 13587,
+        "processId": 2859,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -96,6 +96,12 @@
             "deviceId": "RZ8N30PPV7A",
             "name": "com.SIDRA.CubicRun",
             "processId": 13587,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 2859,
             "exited": false
         },
         {

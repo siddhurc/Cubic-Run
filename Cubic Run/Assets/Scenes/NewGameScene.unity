@@ -3169,12 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfObstaclePrefabs:
-  - {fileID: 4197301691987458563, guid: 42ad465d7a6314306bf038e72f3a70d9, type: 3}
-  - {fileID: 4197301691987458563, guid: 9e5060d6264294f73b7f678dc43b8a5a, type: 3}
-  - {fileID: 4197301691987458563, guid: 92eb67587ef214ecb9d8137fcb72813a, type: 3}
-  - {fileID: 6325360825198586251, guid: f1a55a46fc2174a69aea4cca3a666831, type: 3}
-  - {fileID: 6286689442352711654, guid: 6b88fbf3951c840c987b05b02555c507, type: 3}
-  - {fileID: 6325360825198586251, guid: 780ef12c02026466d8073eb5eb501e1e, type: 3}
+  - {fileID: 6098353767243543766, guid: 094c44183a9ca43638a6504304fb3a1f, type: 3}
   explosionPrefab: {fileID: 3345278265259925909, guid: 63d10e83493aa4fc58fbb18a4cca5943, type: 3}
 --- !u!114 &1243811602
 MonoBehaviour:
