@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "RZ8N30PPV7A",
+    "m_SelectedDeviceId": "R3CX107VA3T",
     "m_SelectedProcess": {
-        "deviceId": "RZ8N30PPV7A",
+        "deviceId": "R3CX107VA3T",
         "name": "com.SIDRA.CubicRun",
-        "processId": 2859,
+        "processId": 20748,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -105,6 +105,24 @@
             "exited": false
         },
         {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 30376,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 2961,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N30PPV7A",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 11940,
+            "exited": false
+        },
+        {
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
             "processId": 9980,
@@ -156,6 +174,12 @@
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
             "processId": 19904,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CX107VA3T",
+            "name": "com.SIDRA.CubicRun",
+            "processId": 20748,
             "exited": false
         }
     ],
