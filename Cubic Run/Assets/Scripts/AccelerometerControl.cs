@@ -25,8 +25,6 @@ public class AccelerometerControl : MonoBehaviour
 
         Vector3 playerMovement = new Vector3(tilt_x * tiltSensitivity, 0, 0);
 
-        Debug.Log($"Accelerometer Data: {tilt_x}");
-
         gameObject.transform.Translate(playerMovement * Time.deltaTime);
 #endif
     }

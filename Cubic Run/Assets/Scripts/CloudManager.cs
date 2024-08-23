@@ -11,6 +11,8 @@ public class CloudManager : MonoBehaviour
     public static CloudManager Instance { get; private set; }
     public GameObject popup_gameobject;
 
+    GooglePlayGamesManager googlePlayGamesInstance;
+
     // Create a leaderboard with this ID in the Unity Cloud Dashboard
     const string LeaderboardId = "CubicRun_Leaderboard";
     Leaderboard leaderboard;
@@ -42,6 +44,30 @@ public class CloudManager : MonoBehaviour
     {
         leaderboard = Leaderboard.FindObjectOfType<Leaderboard>();
         popup = PopupActions.FindObjectOfType<PopupActions>();
+
+        googlePlayGamesInstance = GooglePlayGamesManager.Instance;
+
+        await SignInWithGooglePlayGamesAsync(googlePlayGamesInstance.Token);
+    }
+
+
+    public async Task SignInWithGooglePlayGamesAsync(string authCode)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithGooglePlayGamesAsync(authCode);
+            Debug.Log("SignIn with Unity Authentication is successful.");
+        }
+        catch (AuthenticationException ex)
+        {
+            Debug.LogException(ex);
+            // Handle the exception (e.g., show an error message to the player)
+        }
+        catch (RequestFailedException ex)
+        {
+            Debug.LogException(ex);
+            // Handle the exception (e.g., show an error message to the player)
+        }
     }
 
     private async Task InitializeCloudServices()

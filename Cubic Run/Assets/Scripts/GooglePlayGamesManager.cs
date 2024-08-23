@@ -5,12 +5,33 @@ using GooglePlayGames.BasicApi;
 using UnityEngine;
 using TMPro;
 using Unity.Services.Authentication;
-using Unity.Services.Core;
 using System.Threading.Tasks;
+using System;
+using Unity.Services.Core;
 
 public class GooglePlayGamesManager : MonoBehaviour
 {
+    public static GooglePlayGamesManager Instance { get; private set; }
+
+    public string Token;
+    public string Error;
+
     public TextMeshProUGUI userInfo;
+
+    private async void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            PlayGamesPlatform.Activate();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +40,15 @@ public class GooglePlayGamesManager : MonoBehaviour
 
     public void SignIn()
     {
-        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        if (!PlayGamesPlatform.Instance.localUser.authenticated)
+        {
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        }
+        else
+        {
+            Debug.Log("Player is already signed in.");
+            userInfo.text = "Welcome back " + PlayGamesPlatform.Instance.GetUserDisplayName();
+        }
     }
 
     internal void ProcessAuthentication(SignInStatus status)
@@ -29,21 +58,34 @@ public class GooglePlayGamesManager : MonoBehaviour
             // Continue with Play Games Services
             string userName = PlayGamesPlatform.Instance.GetUserDisplayName();
             string id = PlayGamesPlatform.Instance.GetUserId();
-            
-            PlayGamesPlatform.Instance.RequestServerSideAccess(true, async authCode =>
-            {
-                Debug.Log("Authorization code: " + authCode);
-                await SignInWithGooglePlayGamesAsync(authCode);
-            });
 
-            userInfo.text = "Welcome " + userName;
+            if (!string.IsNullOrEmpty(Token))
+            {
+                Debug.Log("Player is already signed in with Unity Authentication.");
+                userInfo.text = "Welcome, " + userName;
+                return;
+            }
+
+            try
+            {
+                PlayGamesPlatform.Instance.RequestServerSideAccess(true, async authCode =>
+                {
+                    Debug.Log("Authorization code: " + authCode);
+                    Token = authCode;
+                    await SignInWithGooglePlayGamesAsync(authCode);
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error during authentication: " + ex.ToString());
+            }
+
+            userInfo.text = "Welcome, " + userName;
         }
         else
         {
-            // Disable your integration with Play Games Services or show a login button
-            // to ask users to sign-in. Clicking it should call
-            // PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
-            userInfo.text="Sign In failed."+status;
+            Debug.LogError("Authentication failed with status: " + status);
+            // Optionally, show a login button to allow the user to retry
         }
     }
 
@@ -56,19 +98,13 @@ public class GooglePlayGamesManager : MonoBehaviour
         }
         catch (AuthenticationException ex)
         {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
-            userInfo.text = ex.ToString();
+            // Handle the exception (e.g., show an error message to the player)
         }
         catch (RequestFailedException ex)
         {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
-            userInfo.text = ex.ToString();
+            // Handle the exception (e.g., show an error message to the player)
         }
     }
-
-
 }
