@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "R3CX107VA3T",
         "name": "com.SIDRA.CubicRun",
-        "processId": 18906,
+        "processId": 6309,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -125,49 +125,37 @@
         {
             "deviceId": "R3CX107VA3T",
             "name": "com.sec.android.app.launcher",
-            "processId": 4327,
+            "processId": 12338,
             "exited": false
         },
         {
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
-            "processId": 31230,
+            "processId": 26182,
             "exited": true
         },
         {
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
-            "processId": 32060,
+            "processId": 28088,
             "exited": true
         },
         {
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
-            "processId": 4839,
+            "processId": 30469,
             "exited": true
         },
         {
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
-            "processId": 5713,
+            "processId": 806,
             "exited": true
         },
         {
             "deviceId": "R3CX107VA3T",
             "name": "com.SIDRA.CubicRun",
-            "processId": 7834,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CX107VA3T",
-            "name": "com.SIDRA.CubicRun",
-            "processId": 16280,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CX107VA3T",
-            "name": "com.SIDRA.CubicRun",
-            "processId": 18906,
+            "processId": 6309,
             "exited": false
         }
     ],

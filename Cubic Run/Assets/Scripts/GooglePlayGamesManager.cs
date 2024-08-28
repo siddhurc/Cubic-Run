@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using UnityEngine;
 using TMPro;
 using Unity.Services.Authentication;
-using System.Threading.Tasks;
+using UnityEngine;
 using System;
+using System.Threading.Tasks;
 using Unity.Services.Core;
 
 public class GooglePlayGamesManager : MonoBehaviour
 {
     public static GooglePlayGamesManager Instance { get; private set; }
 
-    public string Token;
-    public string Error;
+    public string Token { get; private set; }
+    public string Error { get; private set; }
+    public string PlayerName = "";
 
     public TextMeshProUGUI userInfo;
 
@@ -32,39 +31,22 @@ public class GooglePlayGamesManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         SignIn();
     }
 
     public void SignIn()
     {
-        if (!PlayGamesPlatform.Instance.localUser.authenticated)
-        {
-            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-        }
-        else
-        {
-            Debug.Log("Player is already signed in.");
-            userInfo.text = "Welcome back " + PlayGamesPlatform.Instance.GetUserDisplayName();
-        }
+        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
 
-    internal void ProcessAuthentication(SignInStatus status)
+    private async void ProcessAuthentication(SignInStatus status)
     {
         if (status == SignInStatus.Success)
         {
-            // Continue with Play Games Services
-            string userName = PlayGamesPlatform.Instance.GetUserDisplayName();
+            PlayerName = PlayGamesPlatform.Instance.GetUserDisplayName();
             string id = PlayGamesPlatform.Instance.GetUserId();
-
-            if (!string.IsNullOrEmpty(Token))
-            {
-                Debug.Log("Player is already signed in with Unity Authentication.");
-                userInfo.text = "Welcome, " + userName;
-                return;
-            }
 
             try
             {
@@ -72,39 +54,58 @@ public class GooglePlayGamesManager : MonoBehaviour
                 {
                     Debug.Log("Authorization code: " + authCode);
                     Token = authCode;
-                    await SignInWithGooglePlayGamesAsync(authCode);
+                    await SignInWithUnityAuthentication(authCode);
                 });
             }
             catch (Exception ex)
             {
-                Debug.LogError("Error during authentication: " + ex.ToString());
+                Debug.LogError("Error during Google Play Games authentication: " + ex);
             }
 
-            userInfo.text = "Welcome, " + userName;
+            userInfo.text = "Welcome " + PlayerName;
+
+            
         }
         else
         {
-            Debug.LogError("Authentication failed with status: " + status);
-            // Optionally, show a login button to allow the user to retry
+            // Handle failure scenario, perhaps show a retry button
+            Debug.LogWarning("Google Play Games authentication failed: " + status);
         }
     }
 
-    async Task SignInWithGooglePlayGamesAsync(string authCode)
+    private async Task SignInWithUnityAuthentication(string authCode)
     {
         try
         {
             await AuthenticationService.Instance.SignInWithGooglePlayGamesAsync(authCode);
-            Debug.Log("SignIn with Unity Authentication is successful.");
+            Debug.Log("Sign-in with Unity Authentication is successful.");
+
+            await UpdatePlayerNameOnUnityWithGogglePlayName();
         }
         catch (AuthenticationException ex)
         {
-            Debug.LogException(ex);
-            // Handle the exception (e.g., show an error message to the player)
+            Debug.LogError("AuthenticationException: " + ex);
         }
         catch (RequestFailedException ex)
         {
-            Debug.LogException(ex);
-            // Handle the exception (e.g., show an error message to the player)
+            Debug.LogError("RequestFailedException: " + ex);
         }
+    }
+
+    private async Task UpdatePlayerNameOnUnityWithGogglePlayName()
+    {
+        //if(googlePlayGamesInstance.PlayerName != "")
+        {
+            try
+            {
+                await AuthenticationService.Instance.UpdatePlayerNameAsync(PlayerName);
+                Debug.Log("Player name has been updated on unity cloud with google play name");
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Player name updation error : " + ex);
+            }
+        }
+
     }
 }

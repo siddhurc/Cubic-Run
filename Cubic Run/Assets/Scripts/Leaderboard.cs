@@ -21,7 +21,7 @@ public class Leaderboard : MonoBehaviour
 
     public void populateTable(List<LeaderboardScore> leaderboardScores)
     {
-        for (int i = 3; i < leaderboardTable.transform.childCount; i++)
+        for (int i = 0; i < leaderboardTable.transform.childCount; i++)
             Destroy(leaderboardTable.transform.GetChild(i).gameObject);
 
         Debug.Log(leaderboardScores.Count);
